@@ -12,13 +12,13 @@ const description =
 process.title = description
 
 function askQuery(message) {
-  return new Promise(resolve => {
+  return new Promise(function (resolve) {
     const interface = readline.createInterface({
       input: process.stdin,
       output: process.stdout
     })
 
-    interface.question(message, answer => {
+    interface.question(message, function (answer) {
       interface.close()
 
       resolve(answer)
@@ -34,7 +34,7 @@ function exit(opts) {
 console.log(description + '\n\n')
 
 askQuery('Please type the template string: ')
-  .then(templateString => {
+  .then(function (templateString) {
     if (!templateString) {
       exit({
         message: 'Template string was not given!',
@@ -43,8 +43,8 @@ askQuery('Please type the template string: ')
     }
 
     askQuery('Please type the extension of the file to scan: ')
-      .then(extension => {
-        if (!templateString) {
+      .then(function (extension) {
+        if (!extension) {
           exit({
             message: 'File extension was not given!',
             code: 1
@@ -52,7 +52,9 @@ askQuery('Please type the template string: ')
         }
 
         const currentFiles = fs.readdirSync('.')
-        const subFiles = currentFiles.filter(file => file.endsWith(extension))
+        const subFiles = currentFiles.filter(function (file) {
+          return file.endsWith(extension)
+        })
 
         for (let i = 0; i < subFiles.length; i++) {
           const original = subFiles[i]
