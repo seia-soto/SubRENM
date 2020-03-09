@@ -1,0 +1,10 @@
+{
+  "name": "SubRENM",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Seia-Soto <seia@outlook.kr>",
+  "license": "MIT",
+  "bin": {
+    "subren": "./index.js"
+  }
+}
